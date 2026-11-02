@@ -123,5 +123,9 @@ docs/         datasheet, schema, package README template
 }
 ```
 
-Code: MIT. Data: CC BY 4.0. The weak-Mura images used for the zero-shot check belong to Qiu et al. 2024
+## License
+
+Code: MIT (see LICENSE). The MuraTrace dataset itself (images, masks and annotations) is distributed
+separately under the Creative Commons Attribution 4.0 International license (CC BY 4.0); see the LICENSE
+file inside the data package. The weak-Mura images used for the zero-shot check belong to Qiu et al. 2024
 (figshare 24532633, CC BY 4.0) and are not redistributed here.
