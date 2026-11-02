@@ -35,7 +35,7 @@ LaTeX rows for tab:bgabl:
     $k$ captures & 0.722 & 0.731 & 0.789 & 0.787 \\
     18 captures, same panels & 0.726 & 0.764 & 0.779 & -- \\
 
-## Process-trace, primary protocol (ambiguous-cause; ConvNeXt crop encoder, batch 32)
+## Process-trace, ambiguous-cause configuration (ambiguous-cause; ConvNeXt crop encoder, batch 32)
 
 | run | seed | epoch | mean@1 | mean@3 | step | tool | fault | time | tool@3 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
