@@ -7,7 +7,7 @@ Reserved DOI: 10.5281/zenodo.23889760 (record 23889760)
 | Resource type | Dataset |
 | Title | MuraTrace: A Real-Background Synthetic Benchmark for Multi-Scale Display Mura Inspection (data package v1.0) |
 | Publication date | date of publishing the record |
-| Creators | Lee, Sugyeong — Sungkyunkwan University; Samsung Display Co., Ltd. (add ORCID if available) / Lee, Dong-Hee — Sungkyunkwan University |
+| Creators | Lee, Sugyeong — Affiliation "Department of Semiconductor and Display Engineering, Sungkyunkwan University" (add ORCID if available); one creator only |
 | Description | see below |
 | License | Creative Commons Attribution 4.0 International (CC BY 4.0) |
 | Keywords | display inspection; Mura; OLED; synthetic benchmark; semantic segmentation; root-cause analysis; visibility prediction; SEMU; industrial anomaly detection |

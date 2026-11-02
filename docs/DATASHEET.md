@@ -4,7 +4,7 @@ Following Gebru et al., "Datasheets for Datasets".
 
 ## Motivation
 - **Purpose.** A benchmark for display Mura inspection beyond binary detection: scale-wise segmentation of five Mura classes, graded SEMU visibility prediction, and process-trace attribution (which process step, tool, fault mode and time window caused a defect). Real defective panels and their process records are confidential and rarely releasable; MuraTrace composites physically motivated synthetic defects onto real defect-free panel backgrounds so that appearance and ground-truth cause are paired by construction.
-- **Creators.** Sugyeong Lee (Sungkyunkwan University; Samsung Display Co., Ltd.) and Dong-Hee Lee (Sungkyunkwan University).
+- **Creators.** Sugyeong Lee (Department of Semiconductor and Display Engineering, Sungkyunkwan University).
 - **Funding.** The dataset was created without external funding.
 
 ## Composition
