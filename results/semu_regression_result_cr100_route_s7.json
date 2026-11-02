@@ -1,0 +1,30 @@
+{
+  "data_root": "data/mura_rca_wacv_realbg_visible",
+  "encoder": "smallcnn",
+  "epochs": 100,
+  "seeds": [
+    7
+  ],
+  "mean": 1.6904728412628174,
+  "std": 0.8082420825958252,
+  "per_run": [
+    {
+      "tag": "image_route",
+      "seed": 7,
+      "use_position": false,
+      "use_route": true,
+      "test_r2": 0.4555194632618156,
+      "test_mae": 0.3289269366071898,
+      "best_val_r2": 0.5778224580077087
+    }
+  ],
+  "aggregate": {
+    "image_route": {
+      "test_r2_mean": 0.4555194632618156,
+      "test_r2_std": 0.0,
+      "test_mae_mean": 0.3289269366071898,
+      "test_mae_std": 0.0,
+      "n_seeds": 1
+    }
+  }
+}

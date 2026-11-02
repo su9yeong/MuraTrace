@@ -1,0 +1,479 @@
+{
+  "dataset_name": "MuraTrace",
+  "geometry": {
+    "rows": 8,
+    "cols": 7,
+    "resize_factor": 0.6667,
+    "target_size": null,
+    "bit_depth": 12
+  },
+  "background": {
+    "input_dir": "real_background",
+    "per_source": 20,
+    "weak_augmentation": true,
+    "crop_edges": {
+      "top": 5,
+      "bottom": 5,
+      "left": 0,
+      "right": 0
+    },
+    "synthesis_profile": "real"
+  },
+  "split": {
+    "ratios": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "source_level": true
+  },
+  "classes": {
+    "background": 0,
+    "spot": 1,
+    "line": 2,
+    "region": 3,
+    "gradient": 4,
+    "band": 5
+  },
+  "extent_classes": {
+    "local": 1,
+    "regional": 2,
+    "global": 3
+  },
+  "subtypes": {
+    "spot": [
+      "particle_spot"
+    ],
+    "line": [
+      "random_streak",
+      "stitch_line"
+    ],
+    "region": [
+      "puddle_blob",
+      "thermal_blob"
+    ],
+    "gradient": [
+      "anneal_radial_gradient"
+    ],
+    "band": [
+      "row_banding",
+      "column_banding"
+    ]
+  },
+  "process": {
+    "steps": [
+      "Clean",
+      "Coat",
+      "Deposit",
+      "Litho",
+      "Etch",
+      "Strip",
+      "Anneal"
+    ],
+    "tools_per_step": [
+      2,
+      3,
+      3,
+      2,
+      3,
+      2,
+      2
+    ],
+    "negative_control_steps": [
+      "Strip"
+    ]
+  },
+  "fault_library": {
+    "persistent": [
+      {
+        "process_step": "Clean",
+        "tool_id": "S1_T1",
+        "mask_type": "spot",
+        "subtype": "particle_spot",
+        "extent": "local",
+        "weight": 2.4
+      },
+      {
+        "process_step": "Litho",
+        "tool_id": "S4_T1",
+        "mask_type": "line",
+        "subtype": "stitch_line",
+        "extent": "global",
+        "weight": 0.75
+      },
+      {
+        "process_step": "Etch",
+        "tool_id": "S5_T2",
+        "mask_type": "region",
+        "subtype": "puddle_blob",
+        "extent": "regional",
+        "weight": 0.7
+      }
+    ],
+    "excursion": [
+      {
+        "process_step": "Clean",
+        "tool_id": "S1_T2",
+        "mask_type": "spot",
+        "subtype": "particle_spot",
+        "extent": "local",
+        "window_frac": [
+          0.2,
+          0.6
+        ],
+        "weight": 2.0
+      },
+      {
+        "process_step": "Deposit",
+        "tool_id": "S3_T1",
+        "mask_type": "line",
+        "subtype": "random_streak",
+        "extent": "regional",
+        "window_frac": [
+          0.1,
+          0.75
+        ],
+        "weight": 2.3
+      },
+      {
+        "process_step": "Deposit",
+        "tool_id": "S3_T2",
+        "mask_type": "band",
+        "subtype": "column_banding",
+        "extent": "regional",
+        "window_frac": [
+          0.2,
+          0.45
+        ],
+        "weight": 0.3
+      },
+      {
+        "process_step": "Coat",
+        "tool_id": "S2_T2",
+        "mask_type": "band",
+        "subtype": "row_banding",
+        "extent": "global",
+        "window_frac": [
+          0.35,
+          0.6
+        ],
+        "weight": 0.25
+      },
+      {
+        "process_step": "Anneal",
+        "tool_id": "S7_T2",
+        "mask_type": "gradient",
+        "subtype": "anneal_radial_gradient",
+        "extent": "global",
+        "window_frac": [
+          0.1,
+          0.5
+        ],
+        "weight": 0.25
+      },
+      {
+        "process_step": "Anneal",
+        "tool_id": "S7_T1",
+        "mask_type": "region",
+        "subtype": "thermal_blob",
+        "extent": "regional",
+        "window_frac": [
+          0.58,
+          0.86
+        ],
+        "weight": 0.25
+      }
+    ],
+    "background_unattributed_probability": 0.0
+  },
+  "tool_spatial_signatures": {
+    "S1_T1": {
+      "description": "Clean particle spots appear with a weak upper-left preference.",
+      "center_norm": [
+        0.28,
+        0.32
+      ],
+      "jitter_norm": [
+        0.24,
+        0.24
+      ]
+    },
+    "S2_T1": {
+      "description": "Coat reserve tool; no gradient subtype is generated from this tool."
+    },
+    "S2_T2": {
+      "description": "Coat row banding tends to appear slightly above glass center.",
+      "band_orientation": "row",
+      "center_norm": [
+        0.38,
+        0.5
+      ],
+      "jitter_norm": [
+        0.1,
+        0.12
+      ],
+      "band_width_frac_long_side_range": [
+        0.018,
+        0.065
+      ],
+      "band_width_max_frac_long_side": 0.085,
+      "band_width_max_frac_period": 0.14,
+      "band_width_min_px": 3.0,
+      "band_mask_threshold": 0.3
+    },
+    "S3_T1": {
+      "description": "Deposit random streaks have a mild lower-half preference.",
+      "center_norm": [
+        0.62,
+        0.52
+      ],
+      "jitter_norm": [
+        0.18,
+        0.2
+      ]
+    },
+    "S3_T2": {
+      "description": "Deposit column banding has a right-side preference.",
+      "band_orientation": "column",
+      "center_norm": [
+        0.52,
+        0.66
+      ],
+      "jitter_norm": [
+        0.12,
+        0.1
+      ],
+      "band_width_frac_long_side_range": [
+        0.018,
+        0.065
+      ],
+      "band_width_max_frac_long_side": 0.085,
+      "band_width_max_frac_period": 0.14,
+      "band_width_min_px": 3.0,
+      "band_mask_threshold": 0.3
+    },
+    "S4_T1": {
+      "description": "Litho stitch line occurs near a vertical panel boundary with x-shift.",
+      "stitch_orientation": "vertical",
+      "stitch_offset_frac": [
+        0.08,
+        0.18
+      ],
+      "jitter_norm": [
+        0.02,
+        0.02
+      ]
+    },
+    "S4_T2": {
+      "description": "Litho field-periodic column banding occurs near vertical field boundaries.",
+      "band_orientation": "column",
+      "center_norm": [
+        0.5,
+        0.48
+      ],
+      "jitter_norm": [
+        0.12,
+        0.08
+      ],
+      "band_width_frac_long_side_range": [
+        0.018,
+        0.065
+      ],
+      "band_width_max_frac_long_side": 0.085,
+      "band_width_max_frac_period": 0.14,
+      "band_width_min_px": 3.0,
+      "band_mask_threshold": 0.3
+    },
+    "S5_T2": {
+      "description": "Etch puddle-like region has a lower-left regional preference.",
+      "center_norm": [
+        0.68,
+        0.3
+      ],
+      "jitter_norm": [
+        0.12,
+        0.14
+      ]
+    },
+    "S7_T1": {
+      "description": "Anneal thermal non-uniformity tool. Thermal blob remains broad and near center.",
+      "center_norm": [
+        0.52,
+        0.54
+      ],
+      "jitter_norm": [
+        0.1,
+        0.1
+      ],
+      "thermal_mask_threshold": 0.22
+    },
+    "S7_T2": {
+      "description": "Anneal radial gradient tool. Radial luminance deviation appears near glass edges or corners.",
+      "center_norm": [
+        0.64,
+        0.5
+      ],
+      "jitter_norm": [
+        0.1,
+        0.12
+      ],
+      "edge_width_frac": 0.14,
+      "edge_radial_sigma_frac": 0.34,
+      "edge_mask_threshold": 0.12,
+      "corner_edge_gate_floor": 0.42,
+      "edge_gradient_blur_frac": 0.012
+    }
+  },
+  "generation": {
+    "clean_glass_probability": 0.03,
+    "active_count_profile": "standard",
+    "defect_count_profiles": {
+      "standard": {
+        "1": 0.25,
+        "2": 0.35,
+        "3": 0.25,
+        "4": 0.15
+      },
+      "complex": {
+        "1": 0.1,
+        "2": 0.4,
+        "3": 0.3,
+        "4": 0.2
+      }
+    },
+    "subtype_quota_mode": {
+      "enabled": true,
+      "target_unique_per_subtype": 0,
+      "target_unique_by_subtype": {
+        "particle_spot": 2600,
+        "random_streak": 1700,
+        "stitch_line": 500,
+        "puddle_blob": 500,
+        "thermal_blob": 150,
+        "anneal_radial_gradient": 230,
+        "row_banding": 120,
+        "column_banding": 120
+      },
+      "target_reject_per_subtype": 0,
+      "target_reject_by_subtype": {
+        "particle_spot": 780,
+        "random_streak": 510,
+        "stitch_line": 150,
+        "puddle_blob": 150,
+        "thermal_blob": 45,
+        "anneal_radial_gradient": 69,
+        "row_banding": 36,
+        "column_banding": 36
+      },
+      "defects_per_glass": {
+        "min": 9,
+        "max": 14
+      },
+      "continue_after_quota": false,
+      "max_instances_per_subtype_per_glass": {
+        "particle_spot": 8,
+        "random_streak": 6,
+        "stitch_line": 2,
+        "puddle_blob": 3,
+        "thermal_blob": 1,
+        "anneal_radial_gradient": 1,
+        "row_banding": 1,
+        "column_banding": 1
+      },
+      "multi_cause_constraints": {
+        "no_repeat_subtype_per_glass": false,
+        "max_global_defects": 4,
+        "max_excursion_defects": 12,
+        "max_root_cause_tools": 8,
+        "max_same_process": 8,
+        "max_same_mask_type": 12
+      }
+    },
+    "defects_per_glass": {
+      "min": 1,
+      "max": 4,
+      "lambda": 2.1
+    },
+    "multi_cause_constraints": {
+      "no_repeat_subtype_per_glass": true,
+      "max_global_defects": 1,
+      "max_excursion_defects": 2,
+      "max_root_cause_tools": 3,
+      "max_same_process": 2,
+      "max_same_mask_type": 2
+    },
+    "polarity_probability": {
+      "dark": 0.58,
+      "bright": 0.42
+    },
+    "near_threshold_distractor_probability": 0.05,
+    "save_all_panels": true,
+    "glass_image_limit": -1,
+    "label_mask_policy": "hard_visible_instance",
+    "store_subvisible_support_masks": true
+  },
+  "composition": {
+    "mode": "multiplicative_luminance",
+    "dark": "I' = I * (1 - aM)",
+    "bright": "I' = I * (1 + aM)",
+    "alpha_per_semu": {
+      "spot": 0.006,
+      "line": 0.005,
+      "region": 0.0065,
+      "gradient": 0.0055,
+      "band": 0.0055
+    },
+    "alpha_per_semu_subtype": {
+      "particle_spot": 0.038,
+      "random_streak": 0.025,
+      "stitch_line": 0.02,
+      "puddle_blob": 0.035,
+      "thermal_blob": 0.055,
+      "anneal_radial_gradient": 0.06,
+      "row_banding": 0.05,
+      "column_banding": 0.05
+    },
+    "alpha_cap": {
+      "spot": 0.045,
+      "line": 0.04,
+      "region": 0.055,
+      "gradient": 0.05,
+      "band": 0.05
+    },
+    "alpha_cap_subtype": {
+      "particle_spot": 0.1,
+      "random_streak": 0.08,
+      "stitch_line": 0.08,
+      "puddle_blob": 0.26,
+      "thermal_blob": 0.34,
+      "anneal_radial_gradient": 0.36,
+      "row_banding": 0.32,
+      "column_banding": 0.32
+    }
+  },
+  "recommended_counts": {
+    "default_per_source": 18,
+    "expected_glasses_with_30_sources": 540,
+    "expected_panels_with_8x7": 30240,
+    "target_unique_by_subtype": {
+      "particle_spot": 2600,
+      "random_streak": 1700,
+      "stitch_line": 500,
+      "puddle_blob": 500,
+      "thermal_blob": 150,
+      "anneal_radial_gradient": 230,
+      "row_banding": 120,
+      "column_banding": 120
+    },
+    "target_reject_by_subtype": {
+      "particle_spot": 780,
+      "random_streak": 510,
+      "stitch_line": 150,
+      "puddle_blob": 150,
+      "thermal_blob": 45,
+      "anneal_radial_gradient": 69,
+      "row_banding": 36,
+      "column_banding": 36
+    }
+  }
+}

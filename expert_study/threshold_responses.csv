@@ -1,0 +1,17 @@
+subtype,metric,R1,R2,R3,R4,R5,mean,ours
+particle_spot,perception,1.0,1.0,1.0,1.0,1.0,1.00,1.0
+particle_spot,reject,1.5,1.5,2.0,1.5,1.5,1.60,1.5
+random_streak,perception,1.0,1.0,0.5,0.5,1.0,0.80,1.0
+random_streak,reject,1.5,1.5,0.5,0.5,1.5,1.10,1.5
+stitch_line,perception,1.0,1.0,1.0,1.0,1.0,1.00,1.0
+stitch_line,reject,1.5,1.5,1.0,1.5,1.5,1.40,1.5
+puddle_blob,perception,1.0,1.0,0.5,0.5,1.0,0.80,1.5
+puddle_blob,reject,2.0,2.5,1.5,1.0,1.5,1.70,2.0
+thermal_blob,perception,3.0,3.0,3.0,2.5,3.0,2.90,3.0
+thermal_blob,reject,4.0,4.5,4.0,4.0,4.0,4.10,4.0
+anneal_radial_gradient,perception,3.5,3.0,4.0,4.5,3.0,3.60,3.0
+anneal_radial_gradient,reject,4.0,4.5,4.5,5.5,4.5,4.60,4.0
+row_banding,perception,1.0,1.0,0.5,0.5,0.5,0.70,1.0
+row_banding,reject,1.5,2.0,0.5,0.5,1.0,1.10,2.0
+column_banding,perception,1.0,1.0,0.5,0.5,0.5,0.70,1.0
+column_banding,reject,1.5,2.0,1.0,0.5,1.0,1.20,2.0

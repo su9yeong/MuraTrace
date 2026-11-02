@@ -1,0 +1,62 @@
+{
+  "default": {
+    "engineer_visible": 1.5,
+    "reject_visible": 2.0
+  },
+  "by_mask_type": {
+    "spot": {
+      "engineer_visible": 1.0,
+      "reject_visible": 1.5
+    },
+    "line": {
+      "engineer_visible": 1.0,
+      "reject_visible": 1.5
+    },
+    "region": {
+      "engineer_visible": 1.5,
+      "reject_visible": 2.0
+    },
+    "gradient": {
+      "engineer_visible": 3.0,
+      "reject_visible": 4.0
+    },
+    "band": {
+      "engineer_visible": 1.0,
+      "reject_visible": 2.0
+    }
+  },
+  "by_subtype": {
+    "particle_spot": {
+      "engineer_visible": 1.0,
+      "reject_visible": 1.5
+    },
+    "random_streak": {
+      "engineer_visible": 1.0,
+      "reject_visible": 1.5
+    },
+    "stitch_line": {
+      "engineer_visible": 1.0,
+      "reject_visible": 1.5
+    },
+    "puddle_blob": {
+      "engineer_visible": 1.5,
+      "reject_visible": 2.0
+    },
+    "thermal_blob": {
+      "engineer_visible": 3.0,
+      "reject_visible": 4.0
+    },
+    "anneal_radial_gradient": {
+      "engineer_visible": 3.0,
+      "reject_visible": 4.0
+    },
+    "row_banding": {
+      "engineer_visible": 1.0,
+      "reject_visible": 2.0
+    },
+    "column_banding": {
+      "engineer_visible": 1.0,
+      "reject_visible": 2.0
+    }
+  }
+}

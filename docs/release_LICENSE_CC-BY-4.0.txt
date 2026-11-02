@@ -1,0 +1,16 @@
+MuraTrace data package — Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Sugyeong Lee, Dong-Hee Lee
+
+You are free to share (copy and redistribute the material in any medium or format) and adapt
+(remix, transform, and build upon the material) for any purpose, even commercially, under the
+following terms: Attribution — you must give appropriate credit (cite the WACV 2027 paper, see
+CITATION.cff / README.md), provide a link to the license, and indicate if changes were made.
+No additional restrictions — you may not apply legal terms or technological measures that legally
+restrict others from doing anything the license permits.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+The 30 background captures are images of defect-free OLED-mobile panels recorded by a production
+inspection system and are released with the permission of the data owner [TO BE CONFIRMED BEFORE
+RELEASE]. The defects composited on them are synthetic.

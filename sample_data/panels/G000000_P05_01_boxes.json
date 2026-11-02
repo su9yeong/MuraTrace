@@ -1,0 +1,57 @@
+{
+  "panel_id": "G000000_P05_01",
+  "panel_size": [
+    727,
+    359
+  ],
+  "boxes": [
+    {
+      "instance_id": 7,
+      "mask_type": "region",
+      "class_id": 3,
+      "extent": "regional",
+      "extent_id": 2,
+      "subtype": "puddle_blob",
+      "polarity": "dark",
+      "semu": 1.4416,
+      "panel_label_semu": 1.4416,
+      "panel_instance_semu": 1.5822,
+      "panel_semu_peak": 1.5865,
+      "panel_semu_p95_hard_mask": 1.4416,
+      "panel_semu_p95_visible_core": 1.5822,
+      "panel_is_locally_visible": false,
+      "panel_is_locally_reject": false,
+      "instance_is_visible": true,
+      "instance_is_reject": false,
+      "is_visible": true,
+      "is_reject": false,
+      "process_step": "Etch",
+      "tool_id": "S5_T2",
+      "fault_mode": "persistent",
+      "time_window": null,
+      "bbox": [
+        389,
+        45,
+        701,
+        332
+      ],
+      "bbox_norm": [
+        0.535076,
+        0.125348,
+        0.964237,
+        0.924791
+      ],
+      "yolo": [
+        0.749656,
+        0.52507,
+        0.429161,
+        0.799443
+      ],
+      "area_px": 51416,
+      "bbox_rect_area_px": 89544,
+      "engineer_visible_threshold": 1.5,
+      "reject_visible_threshold": 2.0,
+      "segmentation_train_enabled": false
+    }
+  ]
+}

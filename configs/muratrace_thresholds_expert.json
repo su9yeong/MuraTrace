@@ -1,0 +1,29 @@
+{
+  "description": "Expert-consensus SEMU thresholds: per-subtype MEDIAN over the five inspection engineers of the perceptual study (supplementary Sec. S3, Part B; survey granularity 0.5 SEMU) for the perception (engineer_visible) and reject (reject_visible) thresholds. They are applied to the panel-level instance visibility `panel_instance_semu` (95th percentile of local visibility over the instance's visible pixels) and define the second label set is_visible_expert / is_reject_expert. Under them the number of unique reject instances rises from 1,715 (author thresholds, instance_is_reject) to 2,188 (+28%), concentrated in region (puddle_blob 2.0 -> 1.5) and banding (2.0 -> 1.0); gradients are tolerated more (4.0 -> 4.5). The author thresholds in muratrace_thresholds.json define the released masks and the default flags.",
+  "source": "expert_study/threshold_responses.csv (anonymized), medians over raters R1-R5",
+  "applies_to": "panel_instance_semu",
+  "default": {
+    "engineer_visible": 1.0,
+    "reject_visible": 1.5
+  },
+  "by_subtype": {
+    "particle_spot":          {"engineer_visible": 1.0, "reject_visible": 1.5},
+    "random_streak":          {"engineer_visible": 1.0, "reject_visible": 1.5},
+    "stitch_line":            {"engineer_visible": 1.0, "reject_visible": 1.5},
+    "puddle_blob":            {"engineer_visible": 1.0, "reject_visible": 1.5},
+    "thermal_blob":           {"engineer_visible": 3.0, "reject_visible": 4.0},
+    "anneal_radial_gradient": {"engineer_visible": 3.5, "reject_visible": 4.5},
+    "row_banding":            {"engineer_visible": 0.5, "reject_visible": 1.0},
+    "column_banding":         {"engineer_visible": 0.5, "reject_visible": 1.0}
+  },
+  "rater_means_for_reference": {
+    "particle_spot":          {"engineer_visible": 1.0, "reject_visible": 1.6},
+    "random_streak":          {"engineer_visible": 0.8, "reject_visible": 1.1},
+    "stitch_line":            {"engineer_visible": 1.0, "reject_visible": 1.4},
+    "puddle_blob":            {"engineer_visible": 0.8, "reject_visible": 1.7},
+    "thermal_blob":           {"engineer_visible": 2.9, "reject_visible": 4.1},
+    "anneal_radial_gradient": {"engineer_visible": 3.6, "reject_visible": 4.6},
+    "row_banding":            {"engineer_visible": 0.7, "reject_visible": 1.1},
+    "column_banding":         {"engineer_visible": 0.7, "reject_visible": 1.2}
+  }
+}

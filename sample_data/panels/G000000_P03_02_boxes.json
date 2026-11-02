@@ -1,0 +1,57 @@
+{
+  "panel_id": "G000000_P03_02",
+  "panel_size": [
+    727,
+    359
+  ],
+  "boxes": [
+    {
+      "instance_id": 8,
+      "mask_type": "spot",
+      "class_id": 1,
+      "extent": "local",
+      "extent_id": 1,
+      "subtype": "particle_spot",
+      "polarity": "bright",
+      "semu": 1.1652,
+      "panel_label_semu": 1.1652,
+      "panel_instance_semu": 1.2512,
+      "panel_semu_peak": 1.2639,
+      "panel_semu_p95_hard_mask": 1.1652,
+      "panel_semu_p95_visible_core": 1.2512,
+      "panel_is_locally_visible": true,
+      "panel_is_locally_reject": false,
+      "instance_is_visible": true,
+      "instance_is_reject": false,
+      "is_visible": true,
+      "is_reject": false,
+      "process_step": "Clean",
+      "tool_id": "S1_T1",
+      "fault_mode": "persistent",
+      "time_window": null,
+      "bbox": [
+        449,
+        171,
+        458,
+        181
+      ],
+      "bbox_norm": [
+        0.617607,
+        0.476323,
+        0.629986,
+        0.504178
+      ],
+      "yolo": [
+        0.623796,
+        0.490251,
+        0.01238,
+        0.027855
+      ],
+      "area_px": 74,
+      "bbox_rect_area_px": 90,
+      "engineer_visible_threshold": 1.0,
+      "reject_visible_threshold": 1.5,
+      "segmentation_train_enabled": true
+    }
+  ]
+}

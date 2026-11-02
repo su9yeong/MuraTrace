@@ -1,0 +1,277 @@
+{
+  "nodes": [
+    {
+      "cycle": 0,
+      "step": "Clean",
+      "step_index": 0,
+      "tool_id": "S1_T1",
+      "equip_idx": 0,
+      "node_pos": 0
+    },
+    {
+      "cycle": 0,
+      "step": "Coat",
+      "step_index": 1,
+      "tool_id": "S2_T1",
+      "equip_idx": 2,
+      "node_pos": 1
+    },
+    {
+      "cycle": 0,
+      "step": "Deposit",
+      "step_index": 2,
+      "tool_id": "S3_T3",
+      "equip_idx": 7,
+      "node_pos": 2
+    },
+    {
+      "cycle": 0,
+      "step": "Litho",
+      "step_index": 3,
+      "tool_id": "S4_T1",
+      "equip_idx": 8,
+      "node_pos": 3
+    },
+    {
+      "cycle": 0,
+      "step": "Etch",
+      "step_index": 4,
+      "tool_id": "S5_T1",
+      "equip_idx": 10,
+      "node_pos": 4
+    },
+    {
+      "cycle": 0,
+      "step": "Strip",
+      "step_index": 5,
+      "tool_id": "S6_T2",
+      "equip_idx": 14,
+      "node_pos": 5
+    },
+    {
+      "cycle": 0,
+      "step": "Anneal",
+      "step_index": 6,
+      "tool_id": "S7_T1",
+      "equip_idx": 15,
+      "node_pos": 6
+    },
+    {
+      "cycle": 1,
+      "step": "Clean",
+      "step_index": 0,
+      "tool_id": "S1_T1",
+      "equip_idx": 0,
+      "node_pos": 7
+    },
+    {
+      "cycle": 1,
+      "step": "Coat",
+      "step_index": 1,
+      "tool_id": "S2_T1",
+      "equip_idx": 2,
+      "node_pos": 8
+    },
+    {
+      "cycle": 1,
+      "step": "Deposit",
+      "step_index": 2,
+      "tool_id": "S3_T3",
+      "equip_idx": 7,
+      "node_pos": 9
+    },
+    {
+      "cycle": 1,
+      "step": "Litho",
+      "step_index": 3,
+      "tool_id": "S4_T1",
+      "equip_idx": 8,
+      "node_pos": 10
+    },
+    {
+      "cycle": 1,
+      "step": "Etch",
+      "step_index": 4,
+      "tool_id": "S5_T1",
+      "equip_idx": 10,
+      "node_pos": 11
+    },
+    {
+      "cycle": 1,
+      "step": "Strip",
+      "step_index": 5,
+      "tool_id": "S6_T1",
+      "equip_idx": 13,
+      "node_pos": 12
+    },
+    {
+      "cycle": 1,
+      "step": "Anneal",
+      "step_index": 6,
+      "tool_id": "S7_T2",
+      "equip_idx": 16,
+      "node_pos": 13
+    },
+    {
+      "cycle": 2,
+      "step": "Clean",
+      "step_index": 0,
+      "tool_id": "S1_T1",
+      "equip_idx": 0,
+      "node_pos": 14
+    },
+    {
+      "cycle": 2,
+      "step": "Coat",
+      "step_index": 1,
+      "tool_id": "S2_T2",
+      "equip_idx": 3,
+      "node_pos": 15
+    },
+    {
+      "cycle": 2,
+      "step": "Deposit",
+      "step_index": 2,
+      "tool_id": "S3_T1",
+      "equip_idx": 5,
+      "node_pos": 16
+    },
+    {
+      "cycle": 2,
+      "step": "Litho",
+      "step_index": 3,
+      "tool_id": "S4_T1",
+      "equip_idx": 8,
+      "node_pos": 17
+    },
+    {
+      "cycle": 2,
+      "step": "Etch",
+      "step_index": 4,
+      "tool_id": "S5_T2",
+      "equip_idx": 11,
+      "node_pos": 18
+    },
+    {
+      "cycle": 2,
+      "step": "Strip",
+      "step_index": 5,
+      "tool_id": "S6_T1",
+      "equip_idx": 13,
+      "node_pos": 19
+    },
+    {
+      "cycle": 2,
+      "step": "Anneal",
+      "step_index": 6,
+      "tool_id": "S7_T2",
+      "equip_idx": 16,
+      "node_pos": 20
+    }
+  ],
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      8,
+      9
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      11,
+      12
+    ],
+    [
+      12,
+      13
+    ],
+    [
+      13,
+      14
+    ],
+    [
+      14,
+      15
+    ],
+    [
+      15,
+      16
+    ],
+    [
+      16,
+      17
+    ],
+    [
+      17,
+      18
+    ],
+    [
+      18,
+      19
+    ],
+    [
+      19,
+      20
+    ]
+  ],
+  "route_node_idx": [
+    0,
+    2,
+    7,
+    8,
+    10,
+    14,
+    15,
+    0,
+    2,
+    7,
+    8,
+    10,
+    13,
+    16,
+    0,
+    3,
+    5,
+    8,
+    11,
+    13,
+    16
+  ]
+}

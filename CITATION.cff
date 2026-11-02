@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use MuraTrace, please cite the WACV 2027 paper."
+title: "MuraTrace: A Real-Background Synthetic Benchmark for Multi-Scale Display Mura Inspection"
+authors:
+  - family-names: Lee
+    given-names: Sugyeong
+  - family-names: Lee
+    given-names: Dong-Hee
+version: "1.0"
+date-released: 2026-11-03
+repository-code: "https://github.com/su9yeong/MuraTrace"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23889760"
+    description: "Zenodo archive of the dataset package"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "MuraTrace: A Real-Background Synthetic Benchmark for Multi-Scale Display Mura Inspection"
+  authors:
+    - family-names: Lee
+      given-names: Sugyeong
+    - family-names: Lee
+      given-names: Dong-Hee
+  collection-title: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)"
+  year: 2027
