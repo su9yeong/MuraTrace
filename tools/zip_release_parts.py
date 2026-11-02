@@ -58,7 +58,9 @@ def main():
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--cap-gb", type=float, default=1.9)
+    ap.add_argument("--only", default=None, help="comma-separated group names to (re)build, e.g. meta; others are left untouched")
     a = ap.parse_args()
+    only = set(a.only.split(",")) if a.only else None
     root, out = Path(a.root), Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     cap = int(a.cap_gb * 2**30)
@@ -73,6 +75,8 @@ def main():
     for name, subs, splittable in GROUPS:
         files = list(iter_files(root, subs))
         covered.update(files)
+        if only is not None and name not in only:
+            continue
         if not files:
             log(f"  group {name}: nothing found, skipped"); continue
         if not splittable:
@@ -105,13 +109,15 @@ def main():
         manifest_lines.append(f"{zname}\t{len(files)} files\t{zs / 2**30:.2f} GB")
         log(f"  done {zname}: {zs / 2**30:.2f} GB ({time.time() - t0:.0f} s elapsed)")
 
-    (out / "PARTS.txt").write_text(
-        "MuraTrace v1.0 data package, zip parts. Unpack every archive into the same folder.\n"
-        "Verify with: python tools/verify_release.py --root <folder> --sha  (code repository)\n\n"
-        + "\n".join(manifest_lines) + "\n", encoding="utf-8")
+    if only is None:
+        (out / "PARTS.txt").write_text(
+            "MuraTrace v1.0 data package, zip parts. Unpack every archive into the same folder.\n"
+            "Verify with: python tools/verify_release.py --root <folder> --sha  (code repository)\n\n"
+            + "\n".join(manifest_lines) + "\n", encoding="utf-8")
+    # checksums of every zip in the output folder (also after a partial rebuild)
     with open(out / "ZIP_SHA256SUMS", "w", encoding="utf-8") as f:
-        for zname, _ in plan:
-            f.write(f"{sha256(out / zname)}  {zname}\n")
+        for zp in sorted(out.glob("*.zip")):
+            f.write(f"{sha256(zp)}  {zp.name}\n")
     log(f"all parts written in {time.time() - t0:.0f} s -> {out}")
 
 

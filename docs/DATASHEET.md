@@ -1,18 +1,19 @@
 # Datasheet for MuraTrace (v1.0)
 
-Following Gebru et al., "Datasheets for Datasets". Items marked **[authors]** need a final answer from the authors before release.
+Following Gebru et al., "Datasheets for Datasets".
 
 ## Motivation
 - **Purpose.** A benchmark for display Mura inspection beyond binary detection: scale-wise segmentation of five Mura classes, graded SEMU visibility prediction, and process-trace attribution (which process step, tool, fault mode and time window caused a defect). Real defective panels and their process records are confidential and rarely releasable; MuraTrace composites physically motivated synthetic defects onto real defect-free panel captures so that appearance and ground-truth cause are paired by construction.
-- **Creators.** Sugyeong Lee (Samsung Display Co., Ltd. / Sungkyunkwan University) and Dong-Hee Lee (Sungkyunkwan University). **[authors]** funding statement.
+- **Creators.** Sugyeong Lee (Sungkyunkwan University; Samsung Display Co., Ltd.) and Dong-Hee Lee (Sungkyunkwan University).
+- **Funding.** The dataset was created without external funding.
 
 ## Composition
-- **Instances.** 540 synthetic glasses, each an 8×7 grid of panels → 30,240 panel images (727×359, uint16 luminance); 11,941 panels contain at least one visible defect; 5,736 visible defect instances (1,675 reject under the author thresholds), class counts spot 2,600 / line 2,131 / region 638 / gradient 187 / band 180, eight subtypes.
-- **Per-instance labels.** Dense semantic mask (6 classes), instance id, bounding box, subtype, extent, polarity, SEMU visibility, two reject labels (author / expert-consensus thresholds), process step, tool id, fault mode, time window, target cycle and route-graph node positions. Per glass: a 21-node route graph; two label configurations (default: one tool per subtype; primary ambiguous-cause: the tool is one of the step's interchangeable tools and recorded only in the route graph).
+- **Instances.** 540 synthetic glasses, each an 8×7 grid of panels → 30,240 panel images (727×359, uint16 luminance); 11,928 panels contain at least one visible defect; 5,736 unique visible defect instances (19,531 panel-level instance records, because a defect spanning several panels is recorded on each of them; 1,675 instances are rejects under the author thresholds), class counts spot 2,600 / line 2,131 / region 638 / gradient 187 / band 180, eight subtypes.
+- **Per-instance labels.** Dense semantic mask (6 classes), instance id, bounding box, subtype, extent, polarity, SEMU visibility, two reject labels (author / expert-consensus thresholds), process step, tool id, fault mode, time window, target cycle and route-graph node positions. Per glass: a 21-node route graph; two label configurations (default: one tool per subtype; ambiguous-cause: the tool is one of the step's interchangeable tools and recorded only in the route graph).
 - **Backgrounds.** 30 real defect-free OLED-mobile panel captures (screenshots of a production inspection viewer, display window cropped to 1090×549 px and resized to 727×359), each with 18 augmented variants reproducing illumination/sensor deviations; all from one inspection line.
 - **Splits.** Capture-level split (18/6/6 captures → train/val/test; every panel derived from a capture stays in its split) is the paper's protocol; a glass-disjoint split for process-trace experiments is provided as a file. A random-panel split is used in the paper only as a leakage control.
-- **Errors / noise.** Defects are synthetic; SEMU is computed from the generative amplitude, not measured on real Mura. The realized distribution is capped by the per-subtype amplitude limit (alpha_max), which saturates the rare high-visibility tail.
-- **Confidential or sensitive content.** None: no person, device identifier or production record is contained. **[authors]** confirm that the release of the background captures has been approved by the data owner.
+- **Errors / noise.** Defects are synthetic; SEMU is computed from the generative amplitude, not measured on real Mura. The realized distribution is capped by the per-subtype amplitude limit (alpha_max), which saturates the rare high-visibility tail. The released generator revision resolves overlapping defects with a class-priority z-order that postdates this data; overlap labels differ on 105 of the 30,240 panels between these files and a fresh generator run (see README, "Provenance").
+- **Confidential or sensitive content.** None: no person, device identifier or production record is contained. The background captures are defect-free viewer screenshots that the authors release publicly under the data license.
 
 ## Collection process
 - **Backgrounds** were captured as screenshots of the inspection viewer during normal operation (23 captures on one day, 7 on the previous day), cropped to the display window. No defect was present in any capture.
@@ -26,10 +27,10 @@ Following Gebru et al., "Datasheets for Datasets". Items marked **[authors]** ne
 
 ## Uses
 - **Intended.** Multi-class Mura segmentation, graded visibility regression, process-trace attribution and controlled studies of what signal each task relies on; detection via the YOLO/box exports.
-- **Not intended / cautions.** Absolute numbers are not estimates of production performance: all backgrounds come from one line, the low-frequency illumination field is shared by every panel, and the step/tool mapping is a modeling assumption. Models trained only on MuraTrace transfer to the defect family it synthesizes (compact spots) and not to unmodelled camera domains (paper Sec. 6, Supp. S10).
+- **Not intended / cautions.** Absolute numbers are not estimates of production performance: all backgrounds come from one line, the low-frequency illumination field is shared by every panel, and the step/tool mapping is a modeling assumption. In a zero-shot check on public real weak-Mura imagery (paper supplement, Sec. S9), models trained only on MuraTrace transferred for the defect family it synthesizes (compact spots) and not for unmodelled camera-domain factors (bezel geometry, sensor grain, pixel pitch); users applying the models to another camera domain should add that camera-side knowledge themselves.
 
 ## Distribution
-- Zenodo (DOI, versioned archive) and a Hugging Face mirror; code and baselines on GitHub. License: CC BY 4.0 (data), MIT (code). **[authors]** final DOI and repository URL.
+- Data: Zenodo, DOI 10.5281/zenodo.23889760 (versioned archive), license CC BY 4.0. Code and baseline checkpoints: https://github.com/su9yeong/MuraTrace, license MIT.
 
 ## Maintenance
-- Maintained by the authors via the GitHub issue tracker; versions are released as new Zenodo records under one concept DOI; the capture-level split and all released ids are stable across versions. **[authors]** contact e-mail.
+- Maintained by the authors via the GitHub issue tracker of the code repository; versions are released as new Zenodo records under one concept DOI; the capture-level split and all released ids are stable across versions. Contact: Sugyeong Lee, sugyeong@g.skku.edu.
