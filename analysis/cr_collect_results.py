@@ -35,8 +35,8 @@ def rca_row(summary_path: Path) -> dict:
 def main() -> None:
     md = ["# Camera-ready results summary (auto-collected)\n"]
 
-    # ------------------------------------------------------------ segmentation per capture
-    md.append("## Segmentation: per test capture (mIoU_def over classes present) and strict/repeat subsets\n")
+    # ------------------------------------------------------------ segmentation per background
+    md.append("## Segmentation: per test background (mIoU_def over classes present) and strict/repeat subsets\n")
     md.append("| model | all | " + " | ".join(sorted(STRICT | REPEAT)) + " | strict | repeat | spread (min-max) |")
     md.append("|---|---:|" + "---:|" * 6 + "---:|---:|---|")
     for f in sorted(glob.glob(str(ANA / "seg_per_source_*.json"))):
@@ -71,7 +71,7 @@ def main() -> None:
     if abl:
         row_k = " & ".join(f3(abl.get(k, {}).get("miou_defect")) for k in ("k03_bg3", "k06_bg6", "k12_bg12", "k18_full"))
         row_m = " & ".join(f3(abl.get(k, {}).get("miou_defect")) for k in ("k03_match18", "k06_match18", "k12_match18")) + " & --"
-        md.append(f"\nLaTeX rows for tab:bgabl:\n    $k$ captures & {row_k} \\\\\n    18 captures, same panels & {row_m} \\\\")
+        md.append(f"\nLaTeX rows for tab:bgabl:\n    $k$ backgrounds & {row_k} \\\\\n    18 backgrounds, same panels & {row_m} \\\\")
 
     # ------------------------------------------------------------ ambiguous RCA (camera-ready protocol)
     md.append("\n## Process-trace, primary protocol (ambiguous-cause; ConvNeXt crop encoder, batch 32)\n")

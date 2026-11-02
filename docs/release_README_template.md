@@ -17,8 +17,8 @@ Code, baselines and documentation: https://github.com/su9yeong/MuraTrace — arc
 ## Layout
 
 ```
-manifest.jsonl              one row per panel: ids, grid position, split, source capture, paths, t_norm, defects[]
-splits/capture_level.json   the paper's protocol (18/6/6 background captures -> train/val/test)
+manifest.jsonl              one row per panel: ids, grid position, split, source background, paths, t_norm, defects[]
+splits/background_level.json   the paper's protocol (18/6/6 real backgrounds -> train/val/test)
 splits/glass_disjoint.json  glass-disjoint protocol for process-trace experiments
 configs/                    generation config + SEMU thresholds (author / expert consensus) + config as run
 panels/images/*.png         uint16 luminance, 727x359 (12-bit range)
@@ -29,7 +29,7 @@ panels/boxes/*.json         per-instance annotations (see below); train_boxes = 
 panels/yolo/*.txt           YOLO export of the boxes (class cx cy w h, normalized)
 glass/route_graphs/*.json   default configuration route graphs
 ambiguous/                  ambiguous-cause configuration: manifest, boxes, route graphs (panels are shared)
-backgrounds/                30 clean captures + 540 augmented variants (if included)
+backgrounds/                30 clean backgrounds + 540 augmented variants (if included)
 expert_study/               perceptual-study form and anonymized threshold responses
 DATASHEET.md, dataset_card.md, LICENSE, SHA256SUMS, release_summary.json
 ```
@@ -71,8 +71,12 @@ Data: CC BY 4.0 (see LICENSE). If you use MuraTrace, cite:
 }
 ```
 
+## Contact
+
+Contact: Sugyeong Lee, sugyeong@g.skku.edu or sugyeong.el.lee@gmail.com.
+
 ## Known limitations
 
-All 30 background captures come from one inspection line and share its low-frequency illumination
+All 30 real backgrounds come from one inspection line and share its low-frequency illumination
 field; defects are synthetic (multiplicative luminance fields with SEMU-controlled visibility); the
 step/tool mapping of the process-trace labels is a documented modeling choice. See DATASHEET.md.

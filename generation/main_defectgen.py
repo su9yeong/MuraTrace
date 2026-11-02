@@ -1145,7 +1145,7 @@ def match_panel_luminance(panel: np.ndarray, ref_mean: float, ref_std: float) ->
 def prepare_synthesis_background(panel: np.ndarray, cfg: dict[str, Any], rng: np.random.Generator) -> np.ndarray:
     """Optionally flatten strong low-frequency background before defect composition.
 
-    Real panel captures can contain gradients as strong as the synthetic gradient/band defects. 
+    Real panel backgrounds can contain gradients as strong as the synthetic gradient/band defects. 
     For clean weak synthesis, keep sensor texture/noise but suppress broad shading so SEMU controls defect visibility.
     """
     bg_cfg = cfg.get("background", {})

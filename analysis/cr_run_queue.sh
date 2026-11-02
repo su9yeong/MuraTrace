@@ -144,7 +144,7 @@ for s in 17 27; do
   rca_amb late_fusion      late_fusion    $s
 done
 
-# ---------------------------------------------------------------- stage 8: per-capture breakdown of the remaining seg models
+# ---------------------------------------------------------------- stage 8: per-background breakdown of the remaining seg models
 per_source segformer_mit_b2        runs_wacv_realbg_visible/seg_adv_segformer_mit_b2/best.pt
 per_source hrnet_w32               runs_wacv_realbg_visible/seg_adv_hrnet_w32/best.pt
 per_source deeplab_r34_pretrained  runs_wacv_realbg_visible/seg_adv_deeplab_r34_pretrained/best.pt

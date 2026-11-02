@@ -11,6 +11,6 @@ restrict others from doing anything the license permits.
 
 Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 
-The 30 background captures are images of defect-free OLED-mobile panels recorded by a production
+The 30 real backgrounds are images of defect-free OLED-mobile panels recorded by a production
 inspection system and are released with the permission of the data owner [TO BE CONFIRMED BEFORE
 RELEASE]. The defects composited on them are synthetic.

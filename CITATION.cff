@@ -4,6 +4,7 @@ title: "MuraTrace: A Real-Background Synthetic Benchmark for Multi-Scale Display
 authors:
   - family-names: Lee
     given-names: Sugyeong
+    email: sugyeong@g.skku.edu
   - family-names: Lee
     given-names: Dong-Hee
 version: "1.0"

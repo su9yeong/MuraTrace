@@ -1,6 +1,6 @@
 # Camera-ready results summary (auto-collected)
 
-## Segmentation: per test capture (mIoU_def over classes present) and strict/repeat subsets
+## Segmentation: per test background (mIoU_def over classes present) and strict/repeat subsets
 
 | model | all | bg07 | bg14 | bg15 | bg18 | bg23 | bg25 | strict | repeat | spread (min-max) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
@@ -32,8 +32,8 @@
 | k18_full | 0.787 | 0.849 | 0.826 | 0.651 | 0.675 | 0.934 | 18200 |
 
 LaTeX rows for tab:bgabl:
-    $k$ captures & 0.722 & 0.731 & 0.789 & 0.787 \\
-    18 captures, same panels & 0.726 & 0.764 & 0.779 & -- \\
+    $k$ backgrounds & 0.722 & 0.731 & 0.789 & 0.787 \\
+    18 backgrounds, same panels & 0.726 & 0.764 & 0.779 & -- \\
 
 ## Process-trace, ambiguous-cause configuration (ambiguous-cause; ConvNeXt crop encoder, batch 32)
 

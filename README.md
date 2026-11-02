@@ -7,7 +7,7 @@
 [![Code license: MIT](https://img.shields.io/badge/code-MIT-lightgrey)](LICENSE)
 
 MuraTrace composites physically motivated Mura defects (multiplicative luminance fields with
-SEMU-controlled visibility) onto real defect-free OLED-mobile panel captures and pairs every defect
+SEMU-controlled visibility) onto real defect-free OLED-mobile panel backgrounds and pairs every defect
 with dense perceptual annotations **and** process-trace ground truth (route graph, causal tool, fault
 mode, time window). 540 glasses × 56 panels = 30,240 panel images, 5,736 visible defect instances,
 five classes (spot, line, region, gradient, band), eight subtypes, three tasks:
@@ -40,7 +40,7 @@ pip install -r requirements_gen.txt                      # generation only (nump
 
 ## Reproduce
 
-Generation (from the 30 background captures, `generation/` — see `docs/schema.md` and the supplementary material, Sec. S1):
+Generation (from the 30 real backgrounds, `generation/` — see `docs/schema.md` and the supplementary material, Sec. S1):
 
 ```bash
 python generation/main_augmentbg.py --input backgrounds/clean --out bgbank
@@ -52,7 +52,7 @@ python generation/supplement_ambiguous.py          # ambiguous-cause label confi
 Baselines (`training/`; every script prints its options with `--help`):
 
 ```bash
-# Task 1 — segmentation (e.g. UPerNet Swin-S); per-capture breakdown
+# Task 1 — segmentation (e.g. UPerNet Swin-S); per-background breakdown
 python training/train_segmentation_advanced.py --help
 python training/eval_seg_per_source.py --checkpoint <ckpt> --data_root data/MuraTrace --split test --out results/per_source.json
 # Task 2 — process-trace attribution (ambiguous-cause labels)
@@ -67,7 +67,7 @@ python training/eval_real_weakmura.py --help
 Analysis scripts of the paper (`analysis/`): background texture statistics and figure, rare-class
 breakdowns, result collection; `results/` holds the collected numbers of every reported run.
 
-## Results (test split, capture-level protocol)
+## Results (test split, background-level protocol)
 
 Task 1, mIoU over the five defect classes (per-class in the paper, Table 3):
 
@@ -93,6 +93,10 @@ Task 3, SEMU regression (100 epochs, constant LR, 3 seeds): image+position R² 0
 image-only 0.61 ± 0.02, image+position+route 0.63 ± 0.02.
 
 Baseline checkpoints (weights only, 19 files, 2.9 GB): https://github.com/su9yeong/MuraTrace/releases (release v1.0; SHA256 list in `docs/checkpoints.md`).
+
+## Contact
+
+Contact: Sugyeong Lee, sugyeong@g.skku.edu or sugyeong.el.lee@gmail.com.
 
 ## Repository layout
 

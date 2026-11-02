@@ -14,7 +14,7 @@ What it does
   * manifest.jsonl rewritten with portable '/' paths, new file names, no internal file names
   * ambiguous/: the primary-protocol labels (boxes, route graphs, manifest) pointing at the same panels
   * glass/route_graphs (default configuration), optional glass images, optional backgrounds
-  * splits/capture_level.json (the paper's protocol) and splits/glass_disjoint.json
+  * splits/background_level.json (the paper's protocol) and splits/glass_disjoint.json
   * configs, expert-study files, previews, README / LICENSE / DATASHEET, SHA256SUMS
   * optional zip parts for Zenodo (--zip DIR)
 
@@ -151,7 +151,7 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--limit", type=int, default=0, help="first N manifest rows only (smoke test)")
     ap.add_argument("--compression", type=int, default=6)
-    ap.add_argument("--with-backgrounds", action="store_true", help="include the 30 clean + 540 augmented background captures")
+    ap.add_argument("--with-backgrounds", action="store_true", help="include the 30 clean + 540 augmented real backgrounds")
     ap.add_argument("--with-glass-images", action="store_true")
     ap.add_argument("--no-sha", action="store_true")
     ap.add_argument("--zip", default=None, help="also write zip parts into this directory")
@@ -301,11 +301,11 @@ def main() -> None:
     for r in rows:
         s2s.setdefault(r["source_id"], r["split"])
         if s2s[r["source_id"]] != r["split"]:
-            raise ValueError(f"capture {r['source_id']} appears in two splits")
-    captures = {sp: sorted(k for k, v in s2s.items() if v == sp) for sp in ("train", "val", "test")}
-    dump_json({"protocol": "capture-level (background-source-disjoint): every capture and all panels derived from it belong to one split",
-               "captures": captures, "source_to_split": dict(sorted(s2s.items())),
-               "panels_per_split": dict(Counter(r["split"] for r in rows))}, out / "splits" / "capture_level.json")
+            raise ValueError(f"background {r['source_id']} appears in two splits")
+    backgrounds = {sp: sorted(k for k, v in s2s.items() if v == sp) for sp in ("train", "val", "test")}
+    dump_json({"protocol": "background-level (background-source-disjoint): every background and all panels derived from it belong to one split",
+               "backgrounds": backgrounds, "source_to_split": dict(sorted(s2s.items())),
+               "panels_per_split": dict(Counter(r["split"] for r in rows))}, out / "splits" / "background_level.json")
     g2s = {g: glass_disjoint_split(g) for g in glasses}
     dump_json({"protocol": "glass-disjoint: md5(glass_id)[:8] -> u in [0,1); train if u<0.6, val if u<0.8, else test "
                            "(training/mura_rca_data.py, split_mode=random_glass)",

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Final version of the background-diversity figure: panels (a)/(b) as in
-cr_background_diversity.py, panel (c) = per-test-capture mIoU of the top
+cr_background_diversity.py, panel (c) = per-test-background mIoU of the top
 segmentation models (from training/eval_seg_per_source.py outputs), with the
-strictly-unseen captures marked.
+strictly-unseen backgrounds marked.
 
     python scripts/cr_fig_bg_diversity_final.py
 """
@@ -45,7 +45,7 @@ def main() -> None:
         ax.plot([], [], "-o", ms=2.5, color=c_, label=s_)
     ax.set_xscale("log", base=2); ax.set_xticks(SCALES); ax.set_xticklabels([str(s) for s in SCALES])
     ax.set_xlabel("band-pass scale $s$ [px]"); ax.set_ylabel("RMS contrast [% of mean]")
-    ax.set_title("(a) octave contrast spectra, 30 captures", fontsize=9); ax.legend(fontsize=7, frameon=False); ax.grid(alpha=0.25, lw=0.5)
+    ax.set_title("(a) octave contrast spectra, 30 backgrounds", fontsize=9); ax.legend(fontsize=7, frameon=False); ax.grid(alpha=0.25, lw=0.5)
     ax = axes[1]
     ax.scatter(pcsA[:, 0], pcsA[:, 1], s=4, c=[colors[r["split"]] for r in aug], alpha=0.18, edgecolors="none")
     ax.scatter(pcs[:, 0], pcs[:, 1], s=26, c=[colors[r["split"]] for r in src], edgecolors="k", linewidths=0.4, zorder=3)
@@ -53,7 +53,7 @@ def main() -> None:
         if r["split"] == "test":
             ax.annotate(r["source_id"], p, fontsize=5.5, xytext=(2, 2), textcoords="offset points")
     ax.set_xlabel(f"PC1 ({expl[0]*100:.0f}%)"); ax.set_ylabel(f"PC2 ({expl[1]*100:.0f}%)")
-    ax.set_title("(b) texture-feature PCA: captures (solid), aug (faint)", fontsize=9); ax.grid(alpha=0.25, lw=0.5)
+    ax.set_title("(b) texture-feature PCA: backgrounds (solid), aug (faint)", fontsize=9); ax.grid(alpha=0.25, lw=0.5)
     ax = axes[2]
     have = [(k, n) for k, n in MODELS if (ANA / f"seg_per_source_{k}.json").exists()]
     if have:
@@ -71,9 +71,9 @@ def main() -> None:
         lo = min(json.load(open(ANA / f"seg_per_source_{k}.json"))["per_source"][c]["miou_defect_present"] for k, _ in have for c in caps)
         ax.set_ylim(max(0.0, lo - 0.1), 1.0)
         ax.set_ylabel("test mIoU$_{\\mathrm{def}}$"); ax.legend(fontsize=6.5, frameon=False, loc="lower right")
-        ax.set_title("(c) per held-out capture", fontsize=9); ax.grid(alpha=0.25, lw=0.5, axis="y")
+        ax.set_title("(c) per held-out background", fontsize=9); ax.grid(alpha=0.25, lw=0.5, axis="y")
     else:
-        ax.text(0.5, 0.5, "per-capture evaluation pending", ha="center", va="center", transform=ax.transAxes)
+        ax.text(0.5, 0.5, "per-background evaluation pending", ha="center", va="center", transform=ax.transAxes)
     fig.tight_layout(pad=0.5)
     for o in OUT:
         o.parent.mkdir(parents=True, exist_ok=True)

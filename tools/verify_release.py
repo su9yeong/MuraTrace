@@ -6,7 +6,7 @@ Checks
   * manifest rows, referenced files exist, PNG dtype/shape (uint16 image, uint8 masks, uint16 inst)
   * dataset statistics against the paper: 30,240 panels, 540 glasses, 11,941 defective panels,
     5,736 visible instances (1,675 reject; spot 2600 / line 2131 / region 638 / gradient 187 / band 180)
-  * split sizes (capture-level 18/6/6 captures) and the glass-disjoint split file
+  * split sizes (background-level 18/6/6 backgrounds) and the glass-disjoint split file
   * optional: SHA256SUMS (--sha), bit-exact comparison with the generation output (--src <v1 root>, random sample)
 
 Usage
@@ -32,7 +32,7 @@ except ImportError:  # pragma: no cover
 PAPER = {"panels": 30240, "glasses": 540, "defective_panels": 11928, "visible_instances": 5736,
          "reject_instances": 1675, "reject_instances_panel_semu": 1715, "reject_instances_expert": 2188,
          "per_class": {"spot": 2600, "line": 2131, "region": 638, "gradient": 187, "band": 180},
-         "captures": {"train": 18, "val": 6, "test": 6}}
+         "backgrounds": {"train": 18, "val": 6, "test": 6}}
 # Definitions (paper Sec. 3.5 / Supp. S5): an instance is identified by (glass_id, instance_id) and counted once even
 # when it spans several panels; "visible" = any panel record with is_visible; "reject" = any record with is_reject
 # (label-policy flag on `semu`); the expert-threshold comparison of Sec. 3.3 uses panel_instance_semu
@@ -125,14 +125,14 @@ def main() -> int:
             problems.append("per-class instance counts differ from the paper")
 
     # splits
-    cap = json.load(open(root / "splits" / "capture_level.json", encoding="utf-8"))
-    n_caps = {k: len(v) for k, v in cap["captures"].items()}
-    print("capture-level split:", n_caps, "panels per split:", Counter(r["split"] for r in rows))
-    if len(rows) == PAPER["panels"] and n_caps != PAPER["captures"]:
-        problems.append(f"capture split sizes {n_caps} differ from 18/6/6")
+    cap = json.load(open(root / "splits" / "background_level.json", encoding="utf-8"))
+    n_caps = {k: len(v) for k, v in cap["backgrounds"].items()}
+    print("background-level split:", n_caps, "panels per split:", Counter(r["split"] for r in rows))
+    if len(rows) == PAPER["panels"] and n_caps != PAPER["backgrounds"]:
+        problems.append(f"background split sizes {n_caps} differ from 18/6/6")
     bad_split = sum(1 for r in rows if cap["source_to_split"].get(r["source_id"]) != r["split"])
     if bad_split:
-        problems.append(f"{bad_split} rows whose split disagrees with splits/capture_level.json")
+        problems.append(f"{bad_split} rows whose split disagrees with splits/background_level.json")
     gd = root / "splits" / "glass_disjoint.json"
     if gd.exists():
         g = json.load(open(gd, encoding="utf-8"))
